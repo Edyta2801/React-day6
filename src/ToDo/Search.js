@@ -8,6 +8,7 @@ const Search = (props) => (
                 type="text"
                 value={props.filterText}
                 onChange={props.onFilterTextChangeHandler}
+                placeholder="Filter tasks"
             />
         </div>
         <div>
