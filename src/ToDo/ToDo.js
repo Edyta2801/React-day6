@@ -1,4 +1,5 @@
 import React from 'react'
+import AddTask from './AddTask'
 
 class ToDo extends React.Component {
     state = {
@@ -22,7 +23,7 @@ class ToDo extends React.Component {
                 this.state.newTaskText
             )
         ),
-        newTaskText:''
+        newTaskText: ''
     })
     deleteTask = taskKey => this.setState({
         tasks: this.state.tasks.filter(task => task.key !== taskKey)
@@ -53,16 +54,12 @@ class ToDo extends React.Component {
     render() {
         return (
             <div>
-                <input
-                    type="text"
-                    value={this.state.newTaskText}
-                    onChange={this.onNewTaskTextChangeHandler}
+                {/*remember to import it*/}
+                <AddTask
+                    newTaskText={this.state.newTaskText}
+                    onNewTaskTextChangeHandler={this.onNewTaskTextChangeHandler}
+                    addTask={this.addTask}
                 />
-                <button
-                    onClick={this.addTask}
-                    >
-                    Add task!
-                </button>
             </div>
         )
     }
