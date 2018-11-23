@@ -15,7 +15,7 @@ class ToDo extends React.Component {
             filterText: '',
             chosenFilter: 'ALL',
             newTaskText: '',
-            
+
         }
     )
     componentDidUpdate() {
@@ -82,12 +82,15 @@ class ToDo extends React.Component {
                 <Search
                     filterText={this.state.filterText}
                     chosenFilter={this.state.chosenFilter}
+                    onFilterTextChangeHandler={this.onFilterTextChangeHandler}
                     onAllClickHandler={this.onAllClickHandler}
                     onCompletedClickHandler={this.onCompletedClickHandler}
                     onUnCompletedClickHandler={this.onUnCompletedClickHandler}
 
                 />
-                 <List
+                <List
+                    filterText={this.filterText}
+                    chosenFilter={this.state.chosenFilter}
                     tasksList={this.state.tasks}
                     completeTask={this.completeTask}
                     deleteTask={this.deleteTask}
