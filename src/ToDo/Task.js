@@ -1,8 +1,23 @@
 import React from 'react'
 
-const Task=(props)=>(
+
+
+const completedStyle = {
+    textDecoration: 'line-through'
+}
+const Task = (props) => (
     <div>
-        {props.task.taskText}
+        <div
+            onClick={() => props.completeTask(props.task.key)}
+            style={props.task.isCompleted ? completedStyle : {}}
+        >
+            {props.task.taskText}
+        </div>
+        <button
+            onClick={() => props.deleteTask(props.task.key)}
+        >
+            DELETE
+        </button>
     </div>
 )
 export default Task
