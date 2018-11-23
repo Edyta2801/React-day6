@@ -19,6 +19,13 @@ const List = (props) => (
                         return true
                 }
             })
+                .filter(task =>
+                    task.taskText
+                        .toLowerCase()
+                        .replace(/\s/g, '')
+                        .normalize('NFD')
+                        .replace(/[\u0300-u\036f]/g,"")
+                        .includes(props.filterText.toLowerCase().replace(/\s/g, '')))
                 .map(
                     task => (
                         <Task

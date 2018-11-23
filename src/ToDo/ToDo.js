@@ -89,7 +89,7 @@ class ToDo extends React.Component {
 
                 />
                 <List
-                    filterText={this.filterText}
+                    filterText={this.state.filterText}
                     chosenFilter={this.state.chosenFilter}
                     tasksList={this.state.tasks}
                     completeTask={this.completeTask}
