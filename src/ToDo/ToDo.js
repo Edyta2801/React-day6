@@ -1,17 +1,32 @@
 import React from 'react'
 import AddTask from './AddTask'
 import List from './List'
-
+import Search from './Search'
 
 
 
 class ToDo extends React.Component {
-    state = {
-        tasks: [],
-        filterText: '',
-        chosenFilter: 'ALL',
-        newTaskText: ''
+    state = (
+        JSON.parse(localStorage.getItem('to-do-list-state'))
+        ||
+
+        {
+            tasks: [],
+            filterText: '',
+            chosenFilter: 'ALL',
+            newTaskText: ''
+        }
+    )
+    componentDidUpdate() {
+        this.saveInLocalStorage()
     }
+
+
+
+    saveInLocalStorage = () => localStorage.setItem(
+        'to-do-list-state',
+        JSON.stringify(this.state)
+    )
 
     createTask = text => ({
         taskText: text,
@@ -49,7 +64,7 @@ class ToDo extends React.Component {
     })
     onAllClickHandler = () => this.setState({ chosenFilter: 'ALL' })
     onCompletedClickHandler = () => this.setState({ chosenFilter: 'COMPLETED' })
-    onCompletedClickHandler = () => this.setState({ chosenFilter: 'UNCOMPLETED' })
+    onUnCompletedClickHandler = () => this.setState({ chosenFilter: 'UNCOMPLETED' })
 
     onFilterTextChangeHandler = event => this.setState({ filterText: event.target.value })
     onNewTaskTextChangeHandler = event => this.setState({ newTaskText: event.target.value })
@@ -67,6 +82,14 @@ class ToDo extends React.Component {
                     tasksList={this.state.tasks}
                     completeTask={this.completeTask}
                     deleteTask={this.deleteTask}
+                />
+                <Search
+                    filterText={this.state.filterText}
+                    onFilterTextChangeHandler={this.onFilterTextChangeHandler}
+                    onAllClickHandler={this.onAllClickHandler}
+                    onCompletedClickHandler={this.onCompletedClickHandler}
+                    onUnCompletedClickHandler={this.onUnCompletedClickHandler}
+
                 />
 
             </div>
