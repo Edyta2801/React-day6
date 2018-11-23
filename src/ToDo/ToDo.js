@@ -21,7 +21,8 @@ class ToDo extends React.Component {
             this.createTask(
                 this.state.newTaskText
             )
-        )
+        ),
+        newTaskText:''
     })
     deleteTask = taskKey => this.setState({
         tasks: this.state.tasks.filter(task => task.key !== taskKey)
@@ -55,10 +56,13 @@ class ToDo extends React.Component {
                 <input
                     type="text"
                     value={this.state.newTaskText}
+                    onChange={this.onNewTaskTextChangeHandler}
                 />
-                <button>
+                <button
+                    onClick={this.addTask}
+                    >
                     Add task!
-               </button>
+                </button>
             </div>
         )
     }
